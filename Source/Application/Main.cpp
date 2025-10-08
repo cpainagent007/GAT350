@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
         glRotatef(angle, 0, 0, 1);
         glScalef(scale, scale, 0);
 
-        glBegin(GL_LINE_LOOP);
+        glBegin(GL_TRIANGLES);
 
         for (int i = 0; i < points.size(); i++) {
             glColor3f(colors[i].r, colors[i].g, colors[i].b);
