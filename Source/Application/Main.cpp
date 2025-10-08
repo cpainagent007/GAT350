@@ -13,8 +13,36 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
+    // OpenGL
     std::vector<neu::vec3> points{ {-0.5f, -0.5f, 0}, {0, 0.5, 0}, {0.5, -0.5, 0} };
     std::vector<neu::vec3> colors{ {0.5f, 0.5f, 0}, {0, 0.5f, 0.5f}, {0.5f, 0, 0.5f} };
+
+    // (Vertex Buffer Object)
+    GLuint vbo;
+    glGenBuffers(1, &vbo);
+
+    // Vertex Buffer (Position)
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(neu::vec3) * points.size(), points.data(), GL_STATIC_DRAW);
+
+    // (Vertex Array Object)
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+    // Vertex Shader
+    std::string vs_source;
+    neu::file::ReadTextFile("Shaders/basic.vert", vs_source);
+    const char* vs_cstr = vs_source.c_str();
+    
+    // (Vertex Shader)
+    GLuint vs;
+    vs = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vs, 1, &vs_cstr, NULL);
+    glCompileShader(vs);
 
     // MAIN LOOP
     while (!quit) {
