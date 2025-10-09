@@ -215,7 +215,7 @@ namespace neu {
     /// Call this at the beginning of each frame to clear the previous frame's contents.
     /// </summary>
     void Renderer::Clear() {
-        glClearColor(0.53f, 0.81f, 0.98f, 1);
+        glClearColor(0.0f, 0.0f, 0.0f, 1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
