@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
 
     // (Fragment Shader)
     GLuint fs;
-    fs = glCreateShader(GL_VERTEX_SHADER);
+    fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &fs_cstr, NULL);
     glCompileShader(fs);
 
@@ -113,7 +113,7 @@ int main(int argc, char* argv[]) {
 
     // Uniform
     GLint uniform = glGetUniformLocation(program, "u_time");
-    //ASSERT(uniform != -1);
+    ASSERT(uniform != -1);
 
     // MAIN LOOP
     while (!quit) {
