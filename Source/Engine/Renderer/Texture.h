@@ -37,7 +37,7 @@ namespace neu {
 		// Allow Renderer class to access the texture for drawing operations
 		friend class Renderer;
 
-		SDL_Texture* m_texture{ nullptr };
+		
 		GLuint m_texture = 0;
 	private:
 		
@@ -45,7 +45,7 @@ namespace neu {
 
 		// Pointer to the underlying SDL texture object stored in GPU memory
 		// Initialized to nullptr and managed throughout the texture's lifetime
-
+		
 
 		// The dimensions of the texture in pixels
 		vec2 m_size{ 0, 0 };

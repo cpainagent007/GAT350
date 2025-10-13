@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
     ASSERT(uniform != -1);
 
     GLint tex_uniform = glGetUniformLocation(program, "u_texture");
-    glUniform1i(tex_uniform, texture->m_texture);
+    glUniform1i(tex_uniform, 0);
 
     // MAIN LOOP
     while (!quit) {
