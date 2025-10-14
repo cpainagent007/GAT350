@@ -213,6 +213,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png" />
+    <Image Include="..\..\Build\Assets\Textures\SpongeFront.png" />
+    <Image Include="..\..\Build\Assets\Textures\SpongeShrug.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

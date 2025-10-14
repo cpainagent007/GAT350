@@ -40,5 +40,11 @@
     <Image Include="..\..\Build\Assets\Textures\beast.png">
       <Filter>Assets\Textures</Filter>
     </Image>
+    <Image Include="..\..\Build\Assets\Textures\SpongeShrug.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\SpongeFront.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

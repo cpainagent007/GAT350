@@ -1,3 +1,4 @@
+#include <Renderer/Shader.h>
 
 int main(int argc, char* argv[]) {
     neu::file::SetCurrentDirectory("Assets");
@@ -14,10 +15,59 @@ int main(int argc, char* argv[]) {
     bool quit = false;
 
     // OpenGL
+    // Points, Colors, and Texture Coordinates
     std::vector<neu::vec3> points{ {-0.5f, -0.5f, 0}, {0, 0.5, 0}, {0.5, -0.5, 0} };
     std::vector<neu::vec3> colors{ {1, 1, 0}, {0, 1, 1}, {1, 0, 1} };
     std::vector<neu::vec2> texcoord{ {0, 0}, {1.0f, 0.5f}, {1, 1} };
 
+    struct Vertex {
+        neu::vec3 position;
+        neu::vec3 color;
+        neu::vec2 texcoord;
+    };
+
+    // Vertecies (Points, Colors, Texture Coordinates)
+    std::vector<Vertex> vertices{
+        { { -0.5f, -0.5f, 0 }, {1, 1, 0}, {0, 0}},
+        { { -0.5f, 0.5f, 0}, {0, 1, 1}, {0, 1}},
+        { {0.5f, 0.5f, 0}, {1, 0, 1}, {1, 1}},
+        { {0.5f, -0.5f, 0}, {1, 1, 1}, {1, 0}}
+    };
+
+    // Shared Vertices
+    std::vector<GLuint> indices{ 0, 1, 2, 2, 3, 0 };
+
+    // Vertex Buffer Object
+    GLuint vbo;
+    glGenBuffers(1, &vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), vertices.data(), GL_STATIC_DRAW);
+
+    // Index Buffer Object
+    GLuint ibo;
+    glGenBuffers(1, &ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)* indices.size(), indices.data(), GL_STATIC_DRAW);
+
+    // Vertex Array Object
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+    glBindVertexArray(vao);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    
+    // Vertex Attributes
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, position));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, color));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)offsetof(Vertex, texcoord));
+
+    // Old Method (Points, Colors, Texture Coordinates as individuals)
+    /*
     // (Vertex Buffer Object)
     GLuint vbo[3];
     glGenBuffers(3, vbo);
@@ -53,7 +103,10 @@ int main(int argc, char* argv[]) {
     glEnableVertexAttribArray(2);
     glBindBuffer(GL_ARRAY_BUFFER, vbo[2]);
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
-
+    */
+    
+    // Old Method (Vertex and Fragment Shaders)
+    /*
     // Vertex Shader
     std::string vs_source;
     neu::file::ReadTextFile("Shaders/basic.vert", vs_source);
@@ -100,14 +153,21 @@ int main(int argc, char* argv[]) {
 
         LOG_WARNING("Shader compilation failed: {}", infoLog);
     }
+    */
+    
+    auto vs = neu::Resources().Get<neu::Shader>("Shaders/basic.vert", GL_VERTEX_SHADER);
+    auto fs = neu::Resources().Get<neu::Shader>("Shaders/basic.frag", GL_FRAGMENT_SHADER);
+    
+    
 
     // Program
     GLuint program = glCreateProgram();
-    glAttachShader(program, vs);
-    glAttachShader(program, fs);
+    glAttachShader(program, vs->GetShader());
+    glAttachShader(program, fs->GetShader());
     glLinkProgram(program);
 
     // Check Success (Program)
+    int success;
     glGetProgramiv(program, GL_LINK_STATUS, &success);
     if (!success)
     {
@@ -122,7 +182,7 @@ int main(int argc, char* argv[]) {
     glUseProgram(program);
 
     // Texture
-    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/beast.png");
+    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeShrug.png");
 
     // Uniform
     GLint uniform = glGetUniformLocation(program, "u_time");
@@ -150,7 +210,8 @@ int main(int argc, char* argv[]) {
         neu::GetEngine().GetRenderer().Clear();
 
         glBindVertexArray(vao);
-        glDrawArrays(GL_TRIANGLES, 0, (GLsizei)points.size());
+        //glDrawArrays(GL_TRIANGLES, 0, (GLsizei)points.size());
+        glDrawElements(GL_TRIANGLES, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);
 
         neu::GetEngine().GetRenderer().Present();
     }

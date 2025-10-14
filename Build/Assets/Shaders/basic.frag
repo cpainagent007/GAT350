@@ -14,5 +14,5 @@ void main(){
 	f_color = vec4(v_color * offset, 1);
 	//f_color = vec4(v_color, 1);
 
-	//f_color = texture(u_texture, v_texcoord) * vec4(v_color, 1);
+	f_color = texture(u_texture, v_texcoord) * vec4(v_color, 1);
 }
