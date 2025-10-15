@@ -1,4 +1,3 @@
-#include <Renderer/Shader.h>
 
 int main(int argc, char* argv[]) {
     neu::file::SetCurrentDirectory("Assets");
@@ -161,35 +160,24 @@ int main(int argc, char* argv[]) {
     
 
     // Program
-    GLuint program = glCreateProgram();
-    glAttachShader(program, vs->GetShader());
-    glAttachShader(program, fs->GetShader());
-    glLinkProgram(program);
-
-    // Check Success (Program)
-    int success;
-    glGetProgramiv(program, GL_LINK_STATUS, &success);
-    if (!success)
-    {
-        std::string infoLog(512, '\0');  // pre-allocate space
-        GLsizei length;
-        glGetProgramInfoLog(program, (GLsizei)infoLog.size(), &length, &infoLog[0]);
-        infoLog.resize(length);
-
-        LOG_WARNING("Shader compilation failed: {}", infoLog);
-    }
-
-    glUseProgram(program);
+    auto program = std::make_shared<neu::Program>();
+    program->AttachShader(vs);
+    program->AttachShader(fs);
+    program->Link();
+    program->Use();
 
     // Texture
     neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeShrug.png");
 
-    // Uniform
-    GLint uniform = glGetUniformLocation(program, "u_time");
-    ASSERT(uniform != -1);
+    // GLM
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
+    model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
 
-    GLint tex_uniform = glGetUniformLocation(program, "u_texture");
-    glUniform1i(tex_uniform, 0);
+    // Uniform
+    program->SetUniform("u_time", 0);
+    program->SetUniform("u_model", model);
 
     // MAIN LOOP
     while (!quit) {
@@ -204,7 +192,7 @@ int main(int argc, char* argv[]) {
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
-        glUniform1f(uniform, neu::GetEngine().GetTime().GetTime());
+        program->SetUniform("u_time", neu::GetEngine().GetTime().GetTime());
 
         // Draw
         neu::GetEngine().GetRenderer().Clear();
