@@ -168,16 +168,17 @@ int main(int argc, char* argv[]) {
 
     // Texture
     neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeShrug.png");
+    program->SetUniform("u_texture", 0);
+    
 
-    // GLM
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(0.5f, 0.0f, 0.0f));
-    model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-    model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+    // Transform
+    float rotation = 0.0f;
+    glm::vec3 eye{ 0, 0, 1 };
 
-    // Uniform
-    program->SetUniform("u_time", 0);
-    program->SetUniform("u_model", model);
+    // Projection Matrix
+    float aspect = (neu::GetEngine().GetRenderer().GetWidth()) / (float)(neu::GetEngine().GetRenderer().GetHeight());
+    glm::mat4 projection = glm::perspective(glm::radians(90.0f), aspect, 0.01f, 100.0f);
+    program->SetUniform("u_projection", projection);
 
     // MAIN LOOP
     while (!quit) {
@@ -192,7 +193,19 @@ int main(int argc, char* argv[]) {
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
-        program->SetUniform("u_time", neu::GetEngine().GetTime().GetTime());
+        // Model Matrix
+        rotation += neu::GetEngine().GetTime().GetDeltaTime() * 90;
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(1.5f, 0.0f, 0.0f));
+        model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f));
+        program->SetUniform("u_model", model);
+
+        // View Matrix
+        eye.x += neu::GetEngine().GetInput().GetMouseDelta().x * 0.01f;
+        eye.z += neu::GetEngine().GetInput().GetMouseDelta().y * 0.01f;
+        glm::mat4 view = glm::lookAt(eye, eye + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
+        program->SetUniform("u_view", view);
 
         // Draw
         neu::GetEngine().GetRenderer().Clear();
