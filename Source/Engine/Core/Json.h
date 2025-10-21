@@ -1,8 +1,6 @@
 #pragma once
-#include "Math/Vector2.h"
-#include "Math/Vector3.h"
-
 #include <rapidjson/document.h>
+#include <glm/glm.hpp>
 #include <string>
 #include <vector>
 
@@ -22,7 +20,7 @@ namespace neu::serial {
 	bool Read(const value_t& value, const std::string& name, int& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, float& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, std::string& data, bool required = false);
-	bool Read(const value_t& value, const std::string& name, vec2& data, bool required = false);
-	bool Read(const value_t& value, const std::string& name, vec3& data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, glm::vec2& data, bool required = false);
+	bool Read(const value_t& value, const std::string& name, glm::vec3& data, bool required = false);
 	bool Read(const value_t& value, const std::string& name, std::vector<int>& data, bool required = false);
 }

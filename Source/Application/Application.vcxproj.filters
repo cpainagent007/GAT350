@@ -43,7 +43,7 @@
     <Image Include="..\..\Build\Assets\Textures\SpongeShrug.png">
       <Filter>Assets\Textures</Filter>
     </Image>
-    <Image Include="..\..\Build\Assets\Textures\SpongeFront.png">
+    <Image Include="..\..\Build\Assets\Textures\SpongeSurprise.png">
       <Filter>Assets\Textures</Filter>
     </Image>
   </ItemGroup>

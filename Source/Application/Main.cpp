@@ -14,34 +14,11 @@ int main(int argc, char* argv[]) {
     bool quit = false;
 
     // OpenGL
-    // Points, Colors, and Texture Coordinates
-    std::vector<neu::vec3> points{ {-0.5f, -0.5f, 0}, {0, 0.5, 0}, {0.5, -0.5, 0} };
-    std::vector<neu::vec3> colors{ {1, 1, 0}, {0, 1, 1}, {1, 0, 1} };
-    std::vector<neu::vec2> texcoord{ {0, 0}, {1.0f, 0.5f}, {1, 1} };
 
-    struct Vertex {
-        neu::vec3 position;
-        neu::vec3 color;
-        neu::vec2 texcoord;
-    };
+    // Model
+    auto model3d = std::make_shared<neu::Model>();
 
-    // Vertecies (Points, Colors, Texture Coordinates)
-    std::vector<Vertex> vertices{
-        { { -0.5f, -0.5f, 0 }, {1, 1, 0}, {0, 0}},
-        { { -0.5f, 0.5f, 0}, {0, 1, 1}, {0, 1}},
-        { {0.5f, 0.5f, 0}, {1, 0, 1}, {1, 1}},
-        { {0.5f, -0.5f, 0}, {1, 1, 1}, {1, 0}}
-    };
-
-    // Shared Vertices
-    std::vector<GLushort> indices{ 0, 1, 2, 2, 3, 0 };
-
-    neu::res_t<neu::VertexBuffer> vb = std::make_shared<neu::VertexBuffer>();
-    vb->CreateVertexBuffer((GLsizei)(sizeof(Vertex) * vertices.size()), (GLsizei)vertices.size(), vertices.data());
-    vb->CreateIndexBuffer(GL_UNSIGNED_SHORT, (GLsizei)indices.size(), indices.data());
-    vb->SetAttribute(0, 3, sizeof(Vertex), offsetof(Vertex, position));
-    vb->SetAttribute(1, 3, sizeof(Vertex), offsetof(Vertex, color));
-    vb->SetAttribute(2, 2, sizeof(Vertex), offsetof(Vertex, texcoord));
+    model3d->Load("models/sphere.obj");
     
     // Shaders
     auto vs = neu::Resources().Get<neu::Shader>("Shaders/basic.vert", GL_VERTEX_SHADER);
@@ -55,12 +32,17 @@ int main(int argc, char* argv[]) {
     program->Use();
 
     // Texture
-    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeShrug.png");
+    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeSurprise.png");
+
+    // Uniform
     program->SetUniform("u_texture", 0);
 
     // Transform
     float rotation = 0.0f;
     glm::vec3 eye{ 0, 0, 1 };
+
+    neu::Transform transform{ { 1, 0, 0 } };
+    neu::Transform view{ { 1, 0, 0 } };
 
     // Projection Matrix
     float aspect = (neu::GetEngine().GetRenderer().GetWidth()) / (float)(neu::GetEngine().GetRenderer().GetHeight());
@@ -97,7 +79,9 @@ int main(int argc, char* argv[]) {
         // Draw
         neu::GetEngine().GetRenderer().Clear();
 
-        vb->Draw(GL_TRIANGLES);
+        model3d->Draw(GL_TRIANGLES);
+
+        neu::GetEngine().GetRenderer().Present();
 
         neu::GetEngine().GetRenderer().Present();
     }
