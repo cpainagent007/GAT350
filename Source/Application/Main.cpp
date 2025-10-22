@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
         // Model Matrix
-        transform.rotation.y = 90 * dt;
+        transform.rotation.y += 45 * dt;
         program->SetUniform("u_model", transform.GetMatrix());
         
         // View Matrix
@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
         program->SetUniform("u_view", view);
         program->SetUniform("u_light.position", (glm::vec3)(view * glm::vec4(light.position, 1)));
         program->SetUniform("u_light.color", glm::vec3{ 0.6f, 0.7f, 0.8f });
-        light.position.x = neu::math::sin(neu::GetEngine().GetTime().GetTime() * 3);
+        light.position.x = neu::math::sin(neu::GetEngine().GetTime().GetTime() * 3) * 10;
 
         // Draw
         neu::GetEngine().GetRenderer().Clear();
