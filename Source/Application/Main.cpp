@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     auto model3d = std::make_shared<neu::Model>();
 
     model3d->Load("models/sphere.obj");
-    
+
     // Shaders
     auto vs = neu::Resources().Get<neu::Shader>("Shaders/basic.vert", GL_VERTEX_SHADER);
     auto fs = neu::Resources().Get<neu::Shader>("Shaders/basic.frag", GL_FRAGMENT_SHADER);
@@ -40,6 +40,7 @@ int main(int argc, char* argv[]) {
     // Transform
     float rotation = 0.0f;
     glm::vec3 eye{ 0, 0, 1 };
+    float cameraSpeed = 1.0f;
 
     neu::Transform transform{ { 1, 0, 0 } };
     neu::Transform view{ { 1, 0, 0 } };
@@ -59,6 +60,7 @@ int main(int argc, char* argv[]) {
 
         // Update
         neu::GetEngine().Update();
+        float dt = neu::GetEngine().GetTime().GetDeltaTime();
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
@@ -71,8 +73,16 @@ int main(int argc, char* argv[]) {
         program->SetUniform("u_model", model);
 
         // View Matrix
-        eye.x += neu::GetEngine().GetInput().GetMouseDelta().x * 0.01f;
-        eye.z += neu::GetEngine().GetInput().GetMouseDelta().y * 0.01f;
+        glm::vec3 forward = glm::vec3(0.0f, 0.0f, -1.0f);
+        glm::vec3 right = glm::vec3(1.0f, 0.0f, 0.0f);
+        glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_W)) eye += forward * cameraSpeed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_S)) eye -= forward * cameraSpeed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) eye -= right * cameraSpeed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) eye += right * cameraSpeed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_Q)) eye += up * cameraSpeed * dt;
+        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_E)) eye -= up * cameraSpeed * dt;
         glm::mat4 view = glm::lookAt(eye, eye + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
         program->SetUniform("u_view", view);
 
@@ -86,7 +96,6 @@ int main(int argc, char* argv[]) {
         neu::GetEngine().GetRenderer().Present();
     }
 
-    neu::GetEngine().Shutdown();
-
+    neu::GetEngine().GetRenderer().Present();
     return 0;
 }
