@@ -210,6 +210,8 @@
   <ItemGroup>
     <None Include="..\..\Build\Assets\Shaders\basic.frag" />
     <None Include="..\..\Build\Assets\Shaders\basic.vert" />
+    <None Include="..\..\Build\Assets\Shaders\basic_lit.frag" />
+    <None Include="..\..\Build\Assets\Shaders\basic_lit.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png" />

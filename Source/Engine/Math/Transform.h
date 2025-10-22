@@ -29,7 +29,7 @@ namespace neu {
         glm::mat4 GetMatrix() const {
             glm::mat4 mx = glm::mat4(1.0f);
             mx = glm::translate(mx, position);
-            mx *= glm::eulerAngleYXZ(rotation.y, rotation.x, rotation.z);
+            mx *= glm::eulerAngleYXZ(glm::radians(rotation.y), glm::radians(rotation.x), glm::radians(rotation.z));
             mx = glm::scale(mx, scale);
 
             return mx;
