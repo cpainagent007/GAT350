@@ -41,6 +41,9 @@
     <None Include="..\..\Build\Assets\Shaders\basic_lit.vert">
       <Filter>Assets\Shaders</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Shaders\basic_lit.prog">
+      <Filter>Assets\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png">
@@ -50,6 +53,9 @@
       <Filter>Assets\Textures</Filter>
     </Image>
     <Image Include="..\..\Build\Assets\Textures\SpongeSurprise.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\SpongeStare.png">
       <Filter>Assets\Textures</Filter>
     </Image>
   </ItemGroup>

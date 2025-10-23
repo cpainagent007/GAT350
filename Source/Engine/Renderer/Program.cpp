@@ -36,6 +36,48 @@ namespace neu {
 		return true;
 	}
 
+	bool Program::Load(const std::string& filename) {
+		// load program document
+		serial::document_t document;
+		if (!serial::Load(filename, document)) {
+			LOG_WARNING("Could not load program file: {}", filename);
+			return false;
+		}
+
+		if (!m_program) m_program = glCreateProgram();
+
+		// get/add vertex shader
+		std::string shaderName;
+		SERIAL_READ_NAME(document, "vertex_shader", shaderName);
+		if (!shaderName.empty()) {
+			auto shader = neu::Resources().Get<neu::Shader>(shaderName, GL_VERTEX_SHADER);
+			if (!shader) {
+				LOG_WARNING("Could not get vertex shader: {}", shaderName);
+				glDeleteProgram(m_program);
+				m_program = 0;
+
+				return false;
+			}
+			AttachShader(shader);
+		}
+
+		// get/add fragment shader
+		SERIAL_READ_NAME(document, "fragment_shader", shaderName);
+		if (!shaderName.empty()) {
+			auto shader = neu::Resources().Get<neu::Shader>(shaderName, GL_FRAGMENT_SHADER);
+			if (!shader) {
+				LOG_WARNING("Could not get fragment shader: {}", shaderName);
+				glDeleteProgram(m_program);
+				m_program = 0;
+
+				return false;
+			}
+			AttachShader(shader);
+		}
+
+		return Link();
+	}
+
 	void Program::Use() {
 		glUseProgram(m_program);
 	}

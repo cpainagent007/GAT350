@@ -20,19 +20,12 @@ int main(int argc, char* argv[]) {
 
     model3d->Load("Models/sphere.obj");
 
-    // Shaders
-    auto vs = neu::Resources().Get<neu::Shader>("Shaders/basic_lit.vert", GL_VERTEX_SHADER);
-    auto fs = neu::Resources().Get<neu::Shader>("Shaders/basic_lit.frag", GL_FRAGMENT_SHADER);
-
-    // Program
-    auto program = std::make_shared<neu::Program>();
-    program->AttachShader(vs);
-    program->AttachShader(fs);
-    program->Link();
+    // Program/Shaders
+    auto program = neu::Resources().Get<neu::Program>("shaders/basic_lit.prog");
     program->Use();
 
     // Texture
-    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeShrug.png");
+    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeStare.png");
     program->SetUniform("u_texture", 0);
 
     // Lighting
