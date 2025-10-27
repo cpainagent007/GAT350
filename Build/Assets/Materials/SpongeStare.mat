@@ -1,0 +1,7 @@
+{
+	"program" : "Shaders/basic_lit.prog",
+	"texture" : "Textures/SpongeStare.png",
+	"shininess" : 64,
+	"tiling" : [ 1, 1 ],
+	"offset" : [ 0, 0 ]
+}

@@ -14,6 +14,9 @@
     <Filter Include="Assets\Textures">
       <UniqueIdentifier>{ab1f5ac7-d789-4875-9fec-48565374a87a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Materials">
+      <UniqueIdentifier>{d8cf1e46-1c80-4255-8f90-feb0ec246b8b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -43,6 +46,9 @@
     </None>
     <None Include="..\..\Build\Assets\Shaders\basic_lit.prog">
       <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\SpongeStare.mat">
+      <Filter>Assets\Materials</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

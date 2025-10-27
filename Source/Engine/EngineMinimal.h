@@ -41,6 +41,7 @@
 #include "Audio/AudioSystem.h"
 
 // renderer
+#include "Renderer/Material.h"
 #include "Renderer/Model.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Texture.h"

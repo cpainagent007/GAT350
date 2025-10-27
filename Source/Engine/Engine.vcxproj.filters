@@ -128,6 +128,9 @@
     <ClCompile Include="..\ThirdParty\imgui\backends\imgui_impl_sdl3.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Material.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">

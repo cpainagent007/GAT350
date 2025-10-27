@@ -7,9 +7,7 @@ int main(int argc, char* argv[]) {
     LOG_INFO("initialize engine...");
     neu::GetEngine().Initialize();
 
-    // initialize scene
-
-
+    // Initialize scene
     SDL_Event e;
     bool quit = false;
 
@@ -17,20 +15,16 @@ int main(int argc, char* argv[]) {
 
     // Model
     auto model3d = std::make_shared<neu::Model>();
-
     model3d->Load("Models/sphere.obj");
 
-    // Program/Shaders
-    auto program = neu::Resources().Get<neu::Program>("shaders/basic_lit.prog");
-    program->Use();
-
-    // Texture
-    neu::res_t<neu::Texture> texture = neu::Resources().Get<neu::Texture>("Textures/SpongeStare.png");
-    program->SetUniform("u_texture", 0);
+    // Material
+    auto material = neu::Resources().Get<neu::Material>("Materials/SpongeStare.mat");
+    material->Bind();
 
     // Lighting
-    program->SetUniform("u_ambient_light", glm::vec3{ 0.0f, 0.0f, 0.0f });
+    material->program->SetUniform("u_ambient_light", glm::vec3{ 0.0f, 0.0f, 0.0f });
     neu::Transform light{ { 2, 4, 5 } };
+    glm::vec3 lightColor{ 1 };
 
     // Transform
     neu::Transform transform{ { 1, 0, 0 } };
@@ -39,7 +33,7 @@ int main(int argc, char* argv[]) {
     // Projection Matrix
     float aspect = (neu::GetEngine().GetRenderer().GetWidth()) / (float)(neu::GetEngine().GetRenderer().GetHeight());
     glm::mat4 projection = glm::perspective(glm::radians(90.0f), aspect, 0.01f, 100.0f);
-    program->SetUniform("u_projection", projection);
+    material->program->SetUniform("u_projection", projection);
 
     // MAIN LOOP
     while (!quit) {
@@ -47,6 +41,7 @@ int main(int argc, char* argv[]) {
             if (e.type == SDL_EVENT_QUIT) {
                 quit = true;
             }
+            ImGui_ImplSDL3_ProcessEvent(&e);
         }
 
         // Update
@@ -57,7 +52,7 @@ int main(int argc, char* argv[]) {
 
         // Model Matrix
         transform.rotation.y += 45 * dt;
-        program->SetUniform("u_model", transform.GetMatrix());
+        material->program->SetUniform("u_model", transform.GetMatrix());
         
         // View Matrix
         float speed = 10.0f;
@@ -69,9 +64,9 @@ int main(int argc, char* argv[]) {
         if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_E)) camera.position.y -= speed * dt;
 
         glm::mat4 view = glm::lookAt(camera.position, camera.position + glm::vec3{ 0, 0, -1 }, glm::vec3{ 0, 1, 0 });
-        program->SetUniform("u_view", view);
-        program->SetUniform("u_light.position", (glm::vec3)(view * glm::vec4(light.position, 1)));
-        program->SetUniform("u_light.color", glm::vec3{ 0.6f, 0.7f, 0.8f });
+        material->program->SetUniform("u_view", view);
+        material->program->SetUniform("u_light.position", (glm::vec3)(view * glm::vec4(light.position, 1)));
+        material->program->SetUniform("u_light.color", lightColor);
         light.position.x = neu::math::sin(neu::GetEngine().GetTime().GetTime() * 3) * 10;
 
         // Draw
@@ -84,10 +79,16 @@ int main(int argc, char* argv[]) {
 
         // Set ImGui
         ImGui::Begin("Editor");
+        ImGui::DragFloat3("Position", glm::value_ptr(light.position), 0.1f);
+        ImGui::ColorEdit3("Color", glm::value_ptr(lightColor));
+        ImGui::DragFloat("Shininess", &material->shininess, 0.1);
+        ImGui::DragFloat2("Tiling", glm::value_ptr(material->tiling), 0.1f);
+        ImGui::DragFloat2("Offset", glm::value_ptr(material->offset), 0.1f);
         ImGui::Text("Hello World");
         ImGui::Text("Press 'Esc' to quit.");
         ImGui::End();
 
+        material->Bind();
         model3d->Draw(GL_TRIANGLES);
 
         // Draw ImGui
