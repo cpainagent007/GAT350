@@ -33,6 +33,10 @@ namespace neu {
         SDL_GL_DestroyContext(m_context);   // Destroy the OpenGL context
         SDL_DestroyWindow(m_window);        // Destroy the window
         SDL_Quit();                         // Shutdown SDL
+
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplSDL3_Shutdown();
+        ImGui::DestroyContext();
     }
 
     /// <summary>
@@ -74,6 +78,14 @@ namespace neu {
             return false;
         }
         gladLoadGL();
+
+        // After SDL and OpenGL context creation:
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
+        ImGui::StyleColorsDark(); // Or ImGui::StyleColorsClassic();
+        ImGui_ImplSDL3_InitForOpenGL(m_window, m_context);
+        ImGui_ImplOpenGL3_Init("#version 460 core");
 
         glViewport(0, 0, width, height);
         glEnable(GL_DEPTH_TEST);

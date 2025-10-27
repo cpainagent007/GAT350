@@ -1,4 +1,8 @@
 #pragma once
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include <imgui.h>
+#include <backends/imgui_impl_sdl3.h>
+#include <backends/imgui_impl_opengl3.h>
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
@@ -66,9 +70,6 @@ namespace neu {
 		/// </summary>
 		/// <returns>The height in pixels</returns>
 		int GetHeight() const { return m_height; }
-
-		SDL_Window* GetWindow() const { return m_window; }
-		SDL_GLContext GetContext() const { return m_context; }
 
 	private:
 		// Allow Text and Texture classes to access the SDL renderer for their operations

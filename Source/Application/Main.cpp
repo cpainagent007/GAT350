@@ -77,7 +77,22 @@ int main(int argc, char* argv[]) {
         // Draw
         neu::GetEngine().GetRenderer().Clear();
 
+        // Start new ImGui frame
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL3_NewFrame();
+        ImGui::NewFrame();
+
+        // Set ImGui
+        ImGui::Begin("Editor");
+        ImGui::Text("Hello World");
+        ImGui::Text("Press 'Esc' to quit.");
+        ImGui::End();
+
         model3d->Draw(GL_TRIANGLES);
+
+        // Draw ImGui
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         neu::GetEngine().GetRenderer().Present();
     }

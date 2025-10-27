@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_IMPL_OPENGL_LOADER_CUSTOM;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\glad\include;$(SolutionDir)Source\ThirdParty\glm;$(SolutionDir)Source\ThirdParty\assimp\include;$(SolutionDir)Source\ThirdParty\imgui;$(ProjectDir)Source\ThirdParty\imgui\backends</AdditionalIncludeDirectories>
@@ -98,6 +98,7 @@
       <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <DisableSpecificWarnings>4005</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -115,7 +116,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_IMPL_OPENGL_LOADER_CUSTOM;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\glad\include;$(SolutionDir)Source\ThirdParty\glm;$(SolutionDir)Source\ThirdParty\assimp\include;$(SolutionDir)Source\ThirdParty\imgui;$(ProjectDir)Source\ThirdParty\imgui\backends</AdditionalIncludeDirectories>
@@ -123,6 +124,7 @@
       <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <DisableSpecificWarnings>4005</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -138,7 +140,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_IMPL_OPENGL_LOADER_CUSTOM;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\glad\include;$(SolutionDir)Source\ThirdParty\glm;$(SolutionDir)Source\ThirdParty\assimp\include;$(SolutionDir)Source\ThirdParty\imgui;$(ProjectDir)Source\ThirdParty\imgui\backends</AdditionalIncludeDirectories>
@@ -146,6 +148,7 @@
       <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <DisableSpecificWarnings>4005</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -163,7 +166,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_IMPL_OPENGL_LOADER_CUSTOM;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\Engine;$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\ThirdParty\rapidjson\include;$(SolutionDir)Source\ThirdParty\glad\include;$(SolutionDir)Source\ThirdParty\glm;$(SolutionDir)Source\ThirdParty\assimp\include;$(SolutionDir)Source\ThirdParty\imgui;$(ProjectDir)Source\ThirdParty\imgui\backends</AdditionalIncludeDirectories>
@@ -171,6 +174,7 @@
       <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <DisableSpecificWarnings>4005</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -197,6 +201,12 @@
       <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </ForcedIncludeFiles>
     </ClCompile>
+    <ClCompile Include="..\ThirdParty\imgui\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui\backends\imgui_impl_sdl3.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui\imgui.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Audio\AudioChannel.cpp" />
     <ClCompile Include="Audio\AudioClip.cpp" />
     <ClCompile Include="Audio\AudioSystem.cpp" />
