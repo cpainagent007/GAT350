@@ -1,5 +1,6 @@
 #pragma once
 #include "Resources/Resource.h"
+#include "Program.h"
 #include <glm/glm.hpp>
 
 namespace neu {
