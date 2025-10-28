@@ -18,10 +18,20 @@ namespace neu {
 
 		// Texture
 		std::string textureName;
-		SERIAL_READ_NAME(document, "texture", textureName);
+		SERIAL_READ_NAME(document, "baseMap", textureName);
+		if (!textureName.empty()) baseMap = Resources().Get<Texture>(textureName);
 
-		texture = Resources().Get<Texture>(textureName);
+		textureName = "";
+		SERIAL_READ_NAME(document, "specularMap", textureName);
+		if (!textureName.empty()) specularMap = Resources().Get<Texture>(textureName);
 
+		/*
+		textureName = "";
+		SERIAL_READ_NAME(document, "normalMap", textureName);
+		if (!textureName.empty()) normalMap = Resources().Get<Texture>(textureName);
+		*/
+
+		SERIAL_READ(document, baseColor);
 		SERIAL_READ(document, shininess);
 		SERIAL_READ(document, tiling);
 		SERIAL_READ(document, offset);
@@ -31,11 +41,37 @@ namespace neu {
 
 	void Material::Bind() {
 		program->Use();
-		texture->SetActive(GL_TEXTURE0);
-		texture->Bind();
+		if (baseMap) {
+			baseMap->SetActive(GL_TEXTURE0);
+			baseMap->Bind();
+		}
 
+		if (specularMap) {
+			specularMap->SetActive(GL_TEXTURE1);
+			specularMap->Bind();
+		}
+		/*
+		if (normalMap) {
+			normalMap->SetActive(GL_TEXTURE2);
+			normalMap->Bind();
+		}
+		*/
+
+		program->SetUniform("u_material.baseColor", baseColor);
 		program->SetUniform("u_material.shininess", shininess);
 		program->SetUniform("u_material.tiling", tiling);
 		program->SetUniform("u_material.offset", offset);
+	}
+	void Material::UpdateGui() {
+		if (ImGui::CollapsingHeader("Texture", ImGuiTreeNodeFlags_DefaultOpen)) {
+			ImGui::Text("Name: %s", name.c_str());
+			ImGui::Text("Shader: %s", program->name.c_str());
+			if (baseMap) ImGui::Text("Base Map: %s", baseMap->name.c_str());
+			if (specularMap) ImGui::Text("Specular Map: %s", specularMap->name.c_str());
+			ImGui::ColorEdit3("Texture Color", glm::value_ptr(baseColor));
+			ImGui::DragFloat("Shininess", &shininess, 1.0f, 2.0f, 256.0f);
+			ImGui::DragFloat2("Tiling", glm::value_ptr(tiling), 0.1f);
+			ImGui::DragFloat2("Offset", glm::value_ptr(offset), 0.1f);
+		}
 	}
 }
