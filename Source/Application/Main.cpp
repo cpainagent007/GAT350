@@ -13,6 +13,10 @@ int main(int argc, char* argv[]) {
 
     // OpenGL
 
+    // Scene
+    auto scene = std::make_unique<neu::Scene>();
+    scene->Load("Scenes/scene01.json");
+
     // Model
     auto model3d = std::make_shared<neu::Model>();
     model3d->Load("Models/sphere.obj");
@@ -50,6 +54,8 @@ int main(int argc, char* argv[]) {
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
+        scene->Update(dt);
+
         // Model Matrix
         material->program->SetUniform("u_model", transform.GetMatrix());
         
@@ -86,6 +92,8 @@ int main(int argc, char* argv[]) {
 
         material->Bind();
         model3d->Draw(GL_TRIANGLES);
+
+        scene->Draw(neu::GetEngine().GetRenderer());
 
         // Draw ImGui
         ImGui::Render();
