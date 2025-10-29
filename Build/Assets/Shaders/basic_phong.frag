@@ -6,44 +6,42 @@ in vec3 v_normal;
 
 out vec4 f_color;
 
-uniform vec3 u_ambient_light;
-
-uniform struct Light {
+struct Light {
     vec3 position;
     vec3 color;
-} u_light;
+};
 
-uniform struct Material {
+struct Material {
     sampler2D baseMap;
     vec3 baseColor;
     float shininess;
     vec2 tiling;
     vec2 offset;
-} u_material;
+};
 
-vec3 calculateLight()
+uniform Light u_light;
+uniform Material u_material;
+uniform vec3 u_ambient_light;
+
+vec3 calculateLight(in vec3 position, in vec3 normal)
 {
-    vec3 norm = normalize(v_normal);
-    vec3 lightDir = normalize(u_light.position - v_position);
-    vec3 viewDir = normalize(-v_position);
-    vec3 halfway = normalize(lightDir + viewDir);
+    vec3 light_dir = normalize(u_light.position - position);
+    float intensity = max(dot(light_dir, normal), 0);
+    vec3 diffuse = u_light.color * u_material.baseColor * intensity;
 
-    vec3 ambient = u_ambient_light * u_material.baseColor;
+    vec3 view_dir = normalize(-position);
+    vec3 halfway_dir = normalize(light_dir + view_dir);
+    intensity = max(dot(normal, halfway_dir), 0);
 
-    float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = u_light.color * u_material.baseColor * diff;
+    intensity = pow(intensity, u_material.shininess);
+    vec3 specular = vec3(intensity);
 
-    float spec = pow(max(dot(norm, halfway), 0.0), u_material.shininess);
-    vec3 specular = u_light.color * spec;
-
-    return ambient + diffuse + specular;
+    return u_ambient_light + diffuse + specular;
 }
 
 void main()
 {
-    vec3 lighting = calculateLight();
+    vec3 color = calculateLight(v_position, v_normal);
 
-    vec4 texColor = texture(u_material.baseMap, v_texcoord * u_material.tiling + u_material.offset);
-
-    f_color = texColor * vec4(lighting, 1.0);
+    f_color = texture(u_material.baseMap, v_texcoord) * vec4(color, 1);
 }
