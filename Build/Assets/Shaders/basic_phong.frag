@@ -22,6 +22,7 @@ struct Material {
 uniform Light u_light;
 uniform Material u_material;
 uniform vec3 u_ambient_light;
+uniform sampler2D u_texture;
 
 vec3 calculateLight(in vec3 position, in vec3 normal)
 {
