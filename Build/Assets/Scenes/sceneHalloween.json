@@ -1,0 +1,129 @@
+{
+  "actors": [
+    {
+      "name": "Pumpkin",
+      "persistent": true,
+      "transform": {
+        "position": [ 5, 0, 0 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/Halloween/01/Pumpkin.fbx",
+          "material": "Materials/Pumpkin.mat"
+        }
+      ]
+    },
+    {
+      "name": "Pumpkin",
+      "persistent": true,
+      "transform": {
+        "position": [ 6, 0, -2 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 2, 2, 2 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/Halloween/01/Pumpkin.fbx",
+          "material": "Materials/Pumpkin.mat"
+        }
+      ]
+    },
+    {
+      "name": "GravestoneCross",
+      "persistent": true,
+      "transform": {
+        "position": [ 2, 2, -1 ],
+        "rotation": [ 0, -25, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/Halloween/01/Gravestone_Cross.fbx",
+          "material": "Materials/Gravestone.mat"
+        }
+      ]
+    },
+    {
+      "name": "Gravestone",
+      "persistent": true,
+      "transform": {
+        "position": [ -5, 0, 1 ],
+        "rotation": [ 0, 25, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/Halloween/01/Gravestone_Plain.fbx",
+          "material": "Materials/Gravestone.mat"
+        }
+      ]
+    },
+    {
+      "name": "Skull",
+      "persistent": true,
+      "transform": {
+        "position": [ -4.8, 0, 2 ],
+        "rotation": [ 0, 25, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/Halloween/01/Skull_No_Jaw.fbx",
+          "material": "Materials/Bone.mat"
+        }
+      ]
+    },
+    {
+      "name": "BonePile",
+      "persistent": true,
+      "transform": {
+        "position": [ 4, 0, -7 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/Halloween/02/Bone_Pile1.fbx",
+          "material": "Materials/Bone.mat"
+        }
+      ]
+    },
+    {
+      "name": "camera",
+      "persistent": true,
+      "transform": {
+        "position": [ 0, 5, 15 ],
+        "rotation": [ 0, 180, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "CameraComponent"
+        }
+      ]
+    },
+    {
+      "name": "light",
+      "persistent": true,
+      "transform": {
+        "position": [ 5, 5, 0 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [ 1, 0, 1 ]
+        }
+      ]
+    }
+  ]
+}

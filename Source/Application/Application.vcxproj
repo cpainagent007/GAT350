@@ -208,7 +208,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Build\Assets\Materials\Gravestone.mat" />
+    <None Include="..\..\Build\Assets\Materials\Pumpkin.mat" />
+    <None Include="..\..\Build\Assets\Materials\Bone.mat" />
     <None Include="..\..\Build\Assets\Materials\SpongeStare.mat" />
+    <None Include="..\..\Build\Assets\Scenes\sceneHalloween.json" />
     <None Include="..\..\Build\Assets\Scenes\scene01.json" />
     <None Include="..\..\Build\Assets\Shaders\basic.frag" />
     <None Include="..\..\Build\Assets\Shaders\basic.vert" />
@@ -221,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png" />
+    <Image Include="..\..\Build\Assets\Textures\Bone.png" />
+    <Image Include="..\..\Build\Assets\Textures\Gravestone.png" />
+    <Image Include="..\..\Build\Assets\Textures\Pumpkin.png" />
     <Image Include="..\..\Build\Assets\Textures\SpongeShrug.png" />
     <Image Include="..\..\Build\Assets\Textures\SpongeStare.png" />
     <Image Include="..\..\Build\Assets\Textures\SpongeSurprise.png" />

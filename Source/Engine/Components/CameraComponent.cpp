@@ -29,7 +29,9 @@ namespace neu {
 
 	void CameraComponent::Read(const serial_data_t& value) {
 		SERIAL_READ(value, fov);
-		if (SERIAL_READ(value, aspect)) aspect = GetEngine().GetRenderer().GetWidth() / (float)GetEngine().GetRenderer().GetHeight();
+		if (!SERIAL_READ(value, aspect)) {
+			aspect = GetEngine().GetRenderer().GetWidth() / (float)GetEngine().GetRenderer().GetHeight();
+		}
 		SERIAL_READ(value, near);
 		SERIAL_READ(value, far);
 	}
