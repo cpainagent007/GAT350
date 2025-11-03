@@ -54,7 +54,7 @@ namespace neu {
     /// }
     /// ```
     /// </summary>
-    class Scene : public ISerializable {
+    class Scene : public ISerializable, public GUI {
     public:
         /// <summary>
         /// Constructs a scene with a reference to the parent game instance.
@@ -151,6 +151,8 @@ namespace neu {
         /// </summary>
         /// <param name="renderer">Renderer instance used for all drawing operations</param>
         void Draw(class Renderer& renderer);
+
+        void UpdateGui() override;
 
         /// <summary>
         /// Adds an actor to the scene with optional immediate initialization.
@@ -282,6 +284,7 @@ namespace neu {
         std::vector<T*> GetActorsByTag(const std::string& tag);
 
     private:
+        friend class Editor;
 
         /// <summary>
         /// Container for all actors in the scene.
@@ -301,6 +304,7 @@ namespace neu {
         /// - Actor removal: O(n) for search, O(1) for removal once found
         /// </summary>
         std::list<std::unique_ptr<Actor>> m_actors;
+        glm::vec3 m_ambientLight{ 0.2f, 0.2f, 0.2f };
     };
 
     // ============================================================================

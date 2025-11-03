@@ -22,4 +22,8 @@ namespace neu {
 		SERIAL_READ_NAME(value, "material", materialName);
 		material = Resources().Get<Material>(materialName);
 	}
+
+	void ModelRenderer::UpdateGui()
+	{
+	}
 }

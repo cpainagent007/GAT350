@@ -12,6 +12,8 @@ namespace neu {
 
 		void Read(const serial_data_t& value);
 
+		void UpdateGui() override;
+
 	public:
 		res_t<Model> model;
 		res_t<Material> material;

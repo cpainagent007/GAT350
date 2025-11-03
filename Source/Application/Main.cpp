@@ -13,7 +13,10 @@ int main(int argc, char* argv[]) {
 
     // Scene
     auto scene = std::make_unique<neu::Scene>();
-    scene->Load("Scenes/sceneHalloween.json");
+    scene->Load("Scenes/scene01.json");
+    //scene->Start();
+
+    auto editor = std::make_unique<neu::Editor>();
 
     // MAIN LOOP
     while (!quit) {
@@ -30,26 +33,15 @@ int main(int argc, char* argv[]) {
 
         if (neu::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
+        // Scene
         scene->Update(dt);
-        
-        // View Matrix
-        /*
-        float speed = 10.0f;
-        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_W)) camera.position.z -= speed * dt;
-        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_A)) camera.position.x -= speed * dt;
-        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_S)) camera.position.z += speed * dt;
-        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_D)) camera.position.x += speed * dt;
-        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_Q)) camera.position.y += speed * dt;
-        if (neu::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_E)) camera.position.y -= speed * dt;
-        */
 
+        // Editor
+        editor->Begin();
+        editor->UpdateGui(*scene);
+        
         // Draw
         neu::GetEngine().GetRenderer().Clear();
-
-        // Start new ImGui frame
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL3_NewFrame();
-        ImGui::NewFrame();
 
         // Set ImGui
         ImGui::Begin("Editor");
