@@ -1,7 +1,10 @@
 #version 460 core
 
-in vec2 v_texcoord;
-in vec3 v_color;
+in VS_OUT
+{
+    vec2 texcoord;
+    vec3 color;
+} fs_in;
 
 out vec4 f_color;
 
@@ -17,5 +20,5 @@ uniform struct Material
 
 void main()
 { 
-	f_color = texture(u_material.baseMap, v_texcoord) * vec4(v_color, 1);
+	f_color = texture(u_material.baseMap, fs_in.texcoord) * vec4(fs_in.color, 1);
 }

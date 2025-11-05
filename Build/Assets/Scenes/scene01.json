@@ -12,7 +12,7 @@
         {
           "type": "ModelRenderer",
           "model": "Models/sphere.obj",
-          "material": "Materials/SpongeStare.mat"
+          "material": "Materials/SpongeShrug.mat"
         }
       ]
     },
@@ -21,7 +21,7 @@
       "persistent": true,
       "transform": {
         "position": [ 0, 0, 5 ],
-        "rotation": [ 0, 180, 0 ],
+        "rotation": [ 0, 0, 0 ],
         "scale": [ 1, 1, 1 ]
       },
       "components": [
@@ -31,7 +31,7 @@
         {
           "type": "FirstPersonController",
           "speed": 5,
-          "sensitivity":  0.2
+          "sensitivity": 0.2
         }
       ]
     },
@@ -47,6 +47,40 @@
         {
           "type": "LightComponent",
           "color": [ 1, 1, 0 ]
+        }
+      ]
+    },
+    {
+      "name": "light2",
+      "persistent": true,
+      "transform": {
+        "position": [ -5, 5, 0 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [ 0, 1, 1 ],
+          "intensity": 10,
+          "range": 25
+        }
+      ]
+    },
+    {
+      "name": "light3",
+      "persistent": true,
+      "transform": {
+        "position": [ 0, -5, 0 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 1, 1, 1 ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [ 1, 0, 1 ],
+          "intensity": 10,
+          "range": 25
         }
       ]
     }

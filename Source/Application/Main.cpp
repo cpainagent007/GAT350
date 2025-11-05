@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
     // Scene
     auto scene = std::make_unique<neu::Scene>();
     scene->Load("Scenes/scene01.json");
-    //scene->Start();
+    scene->Start();
 
     auto editor = std::make_unique<neu::Editor>();
 
