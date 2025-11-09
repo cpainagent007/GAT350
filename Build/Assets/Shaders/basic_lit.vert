@@ -86,15 +86,23 @@ vec3 calculateLight(in Light light, in vec3 position, in vec3 normal)
     }
 
     //Diffuse
-    float intensity = max(dot(light_dir, normal), 0);
-    vec3 diffuse = light.color * u_material.baseColor * intensity;
+    float NdotL = max(dot(normal, light_dir), 0);
+    vec3 diffuse = light.color * u_material.baseColor * NdotL;
 
     //Specular
-    vec3 reflection = reflect(-light_dir, normal);
     vec3 view_dir = normalize(-position);
-    intensity = max(dot(reflection, view_dir), 0);
-    intensity = pow(intensity, u_material.shininess);
-    vec3 specular = vec3(intensity);
+
+    //Blinn
+    vec3 halfway_dir = normalize(light_dir + view_dir);
+    float NdotH = max(dot(normal, halfway_dir), 0);
+    NdotH = pow(NdotH, u_material.shininess);
+    vec3 specular = vec3(NdotH);
+
+    //Phong
+    //vec3 reflection = reflect(-light_dir, normal);
+    //float RdotV = max(dot(reflection, view_dir), 0);
+    //RdotV = pow(RdotV, u_material.shininess);
+    //vec3 specular = vec3(RdotV);
 
     return (diffuse + specular) * light.intensity * attenuation;
 }

@@ -1,18 +1,18 @@
 {
   "actors": [
     {
-      "name": "Sphere",
+      "name": "Pestilence",
       "persistent": true,
       "transform": {
         "position": [ 0, 0, 0 ],
         "rotation": [ 0, 0, 0 ],
-        "scale": [ 1, 1, 1 ]
+        "scale": [ 0.1, 0.1, 0.1 ]
       },
       "components": [
         {
           "type": "ModelRenderer",
-          "model": "Models/sphere.obj",
-          "material": "Materials/SpongeShrug.mat"
+          "model": "Models/Pestilence.obj",
+          "material": "Materials/Pestilence.mat"
         }
       ]
     },

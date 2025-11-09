@@ -1,5 +1,5 @@
 {
-	"program" : "Shaders/basic_phong.prog",
+	"program" : "Shaders/basic_lit.prog",
 	"baseMap": "Textures/Gravestone.png",
 	"baseColor":  [1, 1, 1],
 	"shininess" : 2,

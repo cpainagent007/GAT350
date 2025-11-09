@@ -83,6 +83,12 @@
     <None Include="..\..\Build\Assets\Materials\SpongeShrug.mat">
       <Filter>Assets\Materials</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Materials\Pestilence.mat">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Scenes\scene02.json">
+      <Filter>Assets\Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png">
@@ -104,6 +110,9 @@
       <Filter>Assets\Textures</Filter>
     </Image>
     <Image Include="..\..\Build\Assets\Textures\Bone.png">
+      <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Pestilence.png">
       <Filter>Assets\Textures</Filter>
     </Image>
   </ItemGroup>
