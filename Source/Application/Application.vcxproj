@@ -208,6 +208,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\Build\Assets\Materials\Crate.mat" />
     <None Include="..\..\Build\Assets\Materials\Gravestone.mat" />
     <None Include="..\..\Build\Assets\Materials\Pestilence.mat" />
     <None Include="..\..\Build\Assets\Materials\Pumpkin.mat" />
@@ -216,6 +217,7 @@
     <None Include="..\..\Build\Assets\Materials\SpongeStare.mat" />
     <None Include="..\..\Build\Assets\Materials\SpongeSurprise.mat" />
     <None Include="..\..\Build\Assets\Scenes\scene02.json" />
+    <None Include="..\..\Build\Assets\Scenes\scene03.json" />
     <None Include="..\..\Build\Assets\Scenes\sceneHalloween.json" />
     <None Include="..\..\Build\Assets\Scenes\scene01.json" />
     <None Include="..\..\Build\Assets\Shaders\basic.frag" />
