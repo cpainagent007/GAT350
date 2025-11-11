@@ -29,6 +29,10 @@ namespace neu {
 		SERIAL_READ_NAME(document, "emissiveMap", textureName);
 		if (!textureName.empty()) emissiveMap = Resources().Get<Texture>(textureName);
 
+		textureName = "";
+		SERIAL_READ_NAME(document, "normalMap", textureName);
+		if (!textureName.empty()) normalMap = Resources().Get<Texture>(textureName);
+
 		SERIAL_READ(document, baseColor);
 		SERIAL_READ(document, emissiveColor);
 		SERIAL_READ(document, shininess);
@@ -63,6 +67,13 @@ namespace neu {
 			parameters = (Parameters)((uint32_t)parameters | (uint32_t)Parameters::EmissiveMap);
 		}
 
+		if (normalMap) {
+			normalMap->SetActive(GL_TEXTURE3);
+			normalMap->Bind();
+			program->SetUniform("u_normalMap", 3);
+			parameters = (Parameters)((uint32_t)parameters | (uint32_t)Parameters::NormalMap);
+		}
+
 		program->SetUniform("u_material.baseColor", baseColor);
 		program->SetUniform("u_material.emissiveColor", emissiveColor);
 		program->SetUniform("u_material.shininess", shininess);
@@ -78,6 +89,7 @@ namespace neu {
 			if (baseMap) ImGui::Text("Base Map: %s", baseMap->name.c_str());
 			if (specularMap) ImGui::Text("Specular Map: %s", specularMap->name.c_str());
 			if (emissiveMap) ImGui::Text("Emissive Map: %s", emissiveMap->name.c_str());
+			if (normalMap) ImGui::Text("Normal Map: %s", normalMap->name.c_str());
 
 			ImGui::ColorEdit3("Texture Color", glm::value_ptr(baseColor));
 			ImGui::ColorEdit3("Glow Color", glm::value_ptr(emissiveColor));

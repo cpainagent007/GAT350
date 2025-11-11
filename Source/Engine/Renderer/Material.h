@@ -39,7 +39,7 @@ namespace neu {
 		res_t<Texture> baseMap;
 		res_t<Texture> specularMap;
 		res_t<Texture> emissiveMap;
-		//res_t<Texture> normalMap;
+		res_t<Texture> normalMap;
 
 		Parameters parameters;
 	};
