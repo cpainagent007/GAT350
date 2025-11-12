@@ -20,6 +20,9 @@
     <Filter Include="Assets\Scenes">
       <UniqueIdentifier>{f2f26b36-5d92-4828-be52-f57b2aa494d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Skybox">
+      <UniqueIdentifier>{1059f6a4-d2e0-4393-a306-8d9df3a6eec2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -95,6 +98,18 @@
     <None Include="..\..\Build\Assets\Scenes\scene03.json">
       <Filter>Assets\Scenes</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Materials\Skybox.mat">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\skybox.frag">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\skybox.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\skybox.prog">
+      <Filter>Assets\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png">
@@ -120,6 +135,24 @@
     </Image>
     <Image Include="..\..\Build\Assets\Textures\Pestilence.png">
       <Filter>Assets\Textures</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Skybox\posz.jpg">
+      <Filter>Assets\Skybox</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Skybox\negx.jpg">
+      <Filter>Assets\Skybox</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Skybox\negy.jpg">
+      <Filter>Assets\Skybox</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Skybox\negz.jpg">
+      <Filter>Assets\Skybox</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Skybox\posx.jpg">
+      <Filter>Assets\Skybox</Filter>
+    </Image>
+    <Image Include="..\..\Build\Assets\Textures\Skybox\posy.jpg">
+      <Filter>Assets\Skybox</Filter>
     </Image>
   </ItemGroup>
 </Project>

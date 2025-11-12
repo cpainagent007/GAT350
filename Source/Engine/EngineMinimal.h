@@ -49,6 +49,7 @@
 #include "Renderer/Program.h"
 #include "Renderer/TextureAnimation.h"
 #include "Renderer/VertexBuffer.h"
+#include "Renderer/Cubemap.h"
 
 // physics
 #include "Physics/Collidable.h"
