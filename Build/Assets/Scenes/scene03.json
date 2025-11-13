@@ -30,7 +30,7 @@
         {
           "type": "ModelRenderer",
           "model": "Models/Pestilence.obj",
-          "material": "Materials/Reflection.mat"
+          "material": "Materials/Refraction.mat"
         },
         {
           "type": "RotationComponent",

@@ -9,6 +9,8 @@ uniform mat4 u_model;
 uniform mat4 u_view;
 uniform mat4 u_projection;
 
+uniform float u_IOR = 1.3;
+
 void main()
 {
     vec3 position = vec3(u_model * vec4(a_position, 1));
@@ -17,7 +19,7 @@ void main()
     vec3 viewPosition = inverse(u_view)[3].xyz;
     vec3 viewDir = normalize(position - viewPosition);
 
-    v_texcoord = reflect(viewDir, normal);
+    v_texcoord = refract(viewDir, normal, 1.0/u_IOR);
 
     gl_Position = u_projection * u_view * u_model * vec4(a_position, 1.0);
 
