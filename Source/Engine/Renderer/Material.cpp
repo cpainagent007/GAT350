@@ -91,6 +91,7 @@ namespace neu {
 		program->SetUniform("u_material.tiling", tiling);
 		program->SetUniform("u_material.offset", offset);
 		program->SetUniform("u_material.parameters", (uint32_t)parameters);
+		program->SetUniform("u_IOR", IOR);
 	}
 	void Material::UpdateGui() {
 		if (ImGui::CollapsingHeader("Texture", ImGuiTreeNodeFlags_DefaultOpen)) {

@@ -35,6 +35,7 @@ namespace neu {
 		glm::vec2 offset{ 0, 0 };
 		glm::vec3 baseColor{ 1, 1, 1 };
 		glm::vec3 emissiveColor{ 0, 0, 0 };
+		float IOR = 1.3f;
 
 		res_t<Program> program;
 		res_t<Texture> baseMap;
