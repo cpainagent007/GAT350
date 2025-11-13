@@ -19,18 +19,22 @@
       ]
     },
     {
-      "name": "Crate",
+      "name": "Pestilence",
       "persistent": true,
       "transform": {
         "position": [ 0, 0, 0 ],
         "rotation": [ 0, 0, 0 ],
-        "scale": [ 1, 1, 1 ]
+        "scale": [ 0.01, 0.01, 0.01 ]
       },
       "components": [
         {
           "type": "ModelRenderer",
-          "model": "Models/cube.obj",
-          "material": "Materials/Crate.mat"
+          "model": "Models/Pestilence.obj",
+          "material": "Materials/Reflection.mat"
+        },
+        {
+          "type": "RotationComponent",
+          "rotate": [ 0, 90, 0 ]
         }
       ]
     },

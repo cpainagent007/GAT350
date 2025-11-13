@@ -101,7 +101,7 @@
     <None Include="..\..\Build\Assets\Materials\Skybox.mat">
       <Filter>Assets\Materials</Filter>
     </None>
-    <None Include="..\..\Build\Assets\Shaders\skybox.frag">
+    <None Include="..\..\Build\Assets\Shaders\cubemap.frag">
       <Filter>Assets\Shaders</Filter>
     </None>
     <None Include="..\..\Build\Assets\Shaders\skybox.vert">
@@ -109,6 +109,24 @@
     </None>
     <None Include="..\..\Build\Assets\Shaders\skybox.prog">
       <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\refraction.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\reflection.prog">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\refraction.prog">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Shaders\reflection.vert">
+      <Filter>Assets\Shaders</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\Refraction.mat">
+      <Filter>Assets\Materials</Filter>
+    </None>
+    <None Include="..\..\Build\Assets\Materials\Reflection.mat">
+      <Filter>Assets\Materials</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
