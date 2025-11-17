@@ -98,14 +98,35 @@ namespace neu {
 			ImGui::Text("Name: %s", name.c_str());
 			ImGui::Text("Shader: %s", program->name.c_str());
 
-			if (baseMap) ImGui::Text("Base Map: %s", baseMap->name.c_str());
-			if (specularMap) ImGui::Text("Specular Map: %s", specularMap->name.c_str());
-			if (emissiveMap) ImGui::Text("Emissive Map: %s", emissiveMap->name.c_str());
-			if (normalMap) ImGui::Text("Normal Map: %s", normalMap->name.c_str());
-
+			ImGui::Separator();
+			if (baseMap) { 
+				ImGui::Text("Base Map: %s", baseMap->name.c_str());
+				Editor::ShowTexture(*baseMap, 64, 64);
+				Editor::GetDialogResource<Texture>(baseMap, "BaseMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.webp;*.tga){.png,.jpg,.bmp,.jpeg,.webp,.tga},.*");
+			}
 			ImGui::ColorEdit3("Texture Color", glm::value_ptr(baseColor));
-			ImGui::ColorEdit3("Glow Color", glm::value_ptr(emissiveColor));
+			ImGui::Separator();
+
+			if (specularMap) {
+				ImGui::Text("Specular Map: %s", specularMap->name.c_str());
+				Editor::ShowTexture(*specularMap, 64, 64);
+				Editor::GetDialogResource<Texture>(specularMap, "SpecularMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.webp;*.tga){.png,.jpg,.bmp,.jpeg,.webp,.tga},.*");
+			}
 			ImGui::DragFloat("Shininess", &shininess, 1.0f, 2.0f, 256.0f);
+
+			if (emissiveMap) {
+				ImGui::Text("Emissive Map: %s", emissiveMap->name.c_str());
+				Editor::ShowTexture(*emissiveMap, 64, 64);
+				Editor::GetDialogResource<Texture>(emissiveMap, "EmissiveMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.webp;*.tga){.png,.jpg,.bmp,.jpeg,.webp,.tga},.*");
+			}
+			ImGui::ColorEdit3("Glow Color", glm::value_ptr(emissiveColor));
+
+			if (normalMap) {
+				ImGui::Text("Normal Map: %s", normalMap->name.c_str());
+				Editor::ShowTexture(*normalMap, 64, 64);
+				Editor::GetDialogResource<Texture>(normalMap, "NormalMapDialog", "Open Texture", "Image (*.png;*.jpg;*.bmp;*.jpeg;*.webp;*.tga){.png,.jpg,.bmp,.jpeg,.webp,.tga},.*");
+			}
+						
 			ImGui::DragFloat2("Tiling", glm::value_ptr(tiling), 0.1f);
 			ImGui::DragFloat2("Offset", glm::value_ptr(offset), 0.1f);
 		}

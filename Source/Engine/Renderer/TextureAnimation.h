@@ -70,6 +70,8 @@ namespace neu {
 		/// <returns>Resource pointer to the Texture</returns>
 		res_t<Texture> GetTexture() { return m_texture; }
 
+		void UpdateGui() override {}
+
 	private:
 		// Number of columns in the sprite sheet grid
 		int m_columns = 0;

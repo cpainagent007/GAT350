@@ -71,6 +71,8 @@ namespace neu {
 		/// <returns>The height in pixels</returns>
 		int GetHeight() const { return m_height; }
 
+
+
 	private:
 		// Allow Text and Texture classes to access the SDL renderer for their operations
 		friend class Text;

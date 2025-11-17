@@ -45,6 +45,8 @@ namespace neu {
 		GLuint m_texture = 0;
 
 		GLenum m_target = GL_TEXTURE_2D;
+
+		void UpdateGui() override;
 	private:
 
 		// Pointer to the underlying SDL texture object stored in GPU memory
