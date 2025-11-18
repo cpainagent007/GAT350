@@ -50,6 +50,7 @@
 #include "Renderer/TextureAnimation.h"
 #include "Renderer/VertexBuffer.h"
 #include "Renderer/Cubemap.h"
+#include "Renderer/RenderTexture.h"
 
 // physics
 #include "Physics/Collidable.h"

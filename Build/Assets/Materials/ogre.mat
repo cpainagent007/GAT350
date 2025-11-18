@@ -1,5 +1,5 @@
 {
-	"program": "shaders/lit_phong.prog",
+	"program": "shaders/basic_phong.prog",
 	"baseMap": "textures/ogre_base.bmp",
 	"normalMap": "textures/ogre_normal.bmp",
 	"baseColor": [ 1, 1, 1 ],

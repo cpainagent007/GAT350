@@ -36,7 +36,7 @@ namespace neu {
 		/// Gets the dimensions of the texture in pixels.
 		/// </summary>
 		/// <returns>A vec2 containing the width and height of the texture</returns>
-		vec2 GetSize() { return m_size;  }
+		glm::ivec2 GetSize() { return m_size;  }
 
 		// Allow Renderer class to access the texture for drawing operations
 		friend class Renderer;
@@ -46,6 +46,8 @@ namespace neu {
 
 		GLenum m_target = GL_TEXTURE_2D;
 
+		glm::ivec2 m_size{ 0, 0 };
+
 		void UpdateGui() override;
 	private:
 
@@ -54,6 +56,6 @@ namespace neu {
 		
 
 		// The dimensions of the texture in pixels
-		vec2 m_size{ 0, 0 };
+		
 	};
 }

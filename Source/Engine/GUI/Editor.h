@@ -33,7 +33,7 @@ namespace neu {
 		if (ImGuiFileDialog::Instance()->Display(dialogName)) {
 			if (ImGuiFileDialog::Instance()->IsOk()) {
 				std::string filename = ImGuiFileDialog::Instance()->GetFilePathName();
-				resource = Resources().Get<T>(filename);
+				resource = Resources().Get<T>(file::GetRelativePath(filename));
 			}
 			else {
 				resource = res_t<T>();

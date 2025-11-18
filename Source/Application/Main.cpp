@@ -11,11 +11,18 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
+    // Render to Texture
+    auto renderTexture = std::make_shared<neu::RenderTexture>();
+    renderTexture->Create(512, 512);
+    neu::Resources().AddResource("renderTexture", renderTexture);
+
+
     // Scene
     auto scene = std::make_unique<neu::Scene>();
     scene->Load("Scenes/scene03.json");
     scene->Start();
 
+    // Editor
     auto editor = std::make_unique<neu::Editor>();
 
     // MAIN LOOP

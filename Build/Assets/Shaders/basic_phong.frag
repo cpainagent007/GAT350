@@ -133,6 +133,7 @@ void main()
     texture(u_emissiveMap, fs_in.texcoord) * vec4(u_material.emissiveColor, 1.0) :
     vec4(u_material.emissiveColor, 1.0);
 
-    vec4 texColor = texture(u_baseMap, fs_in.texcoord);
-    f_color = texColor * vec4(color, 1.0) + emissive;
+    f_color = texture(u_baseMap, fs_in.texcoord) * vec4(color, 1) + emissive;
+
+    //f_color = vec4(gl_FragCoord.z);
 }

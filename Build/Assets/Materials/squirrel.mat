@@ -1,5 +1,5 @@
 {
-	"program": "shaders/lit_phong.prog",
+	"program": "shaders/basic_phong.prog",
 	"baseMap": "textures/squirrel_base.png",
 	"normalMap": "textures/squirrel_normal.png",
 	"baseColor": [ 1, 1, 1 ],

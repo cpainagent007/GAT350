@@ -15,6 +15,8 @@ namespace neu {
         m_size = glm::ivec2{ width, height };
 
         // framebuffer
+        glGenFramebuffers(1, &m_fbo);
+        BindFramebuffer();
 
         // color texture
         glGenTextures(1, &m_texture);
@@ -27,9 +29,15 @@ namespace neu {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_texture, 0);
+
         // depth (optional)
         if (depth) {
-            //
+            glGenRenderbuffers(1, &m_depthBuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, m_depthBuffer);
+
+            glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, m_depthBuffer);
         }
 
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
