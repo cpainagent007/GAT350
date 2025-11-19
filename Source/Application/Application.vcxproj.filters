@@ -146,6 +146,9 @@
     <None Include="..\..\Build\Assets\Materials\ogre.mat">
       <Filter>Assets\Materials</Filter>
     </None>
+    <None Include="..\..\Build\Assets\Scenes\scene04.json">
+      <Filter>Assets\Scenes</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\Build\Assets\Textures\beast.png">

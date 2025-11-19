@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
 
     // Scene
     auto scene = std::make_unique<neu::Scene>();
-    scene->Load("Scenes/scene03.json");
+    scene->Load("Scenes/scene04.json");
     scene->Start();
 
     // Editor
@@ -48,8 +48,6 @@ int main(int argc, char* argv[]) {
         editor->UpdateGui(*scene);
         
         // Draw
-        neu::GetEngine().GetRenderer().Clear();
-
         // Set ImGui
         ImGui::Begin("Editor");
         ImGui::End();
