@@ -212,6 +212,7 @@
     <None Include="..\..\Build\Assets\Materials\Gravestone.mat" />
     <None Include="..\..\Build\Assets\Materials\ogre.mat" />
     <None Include="..\..\Build\Assets\Materials\Pestilence.mat" />
+    <None Include="..\..\Build\Assets\Materials\postprocess.mat" />
     <None Include="..\..\Build\Assets\Materials\Pumpkin.mat" />
     <None Include="..\..\Build\Assets\Materials\Bone.mat" />
     <None Include="..\..\Build\Assets\Materials\Reflection.mat" />
@@ -236,6 +237,9 @@
     <None Include="..\..\Build\Assets\Shaders\basic_phong.prog" />
     <None Include="..\..\Build\Assets\Shaders\basic_phong.vert" />
     <None Include="..\..\Build\Assets\Shaders\cubemap.frag" />
+    <None Include="..\..\Build\Assets\Shaders\postprocess.frag" />
+    <None Include="..\..\Build\Assets\Shaders\postprocess.prog" />
+    <None Include="..\..\Build\Assets\Shaders\postprocess.vert" />
     <None Include="..\..\Build\Assets\Shaders\reflection.prog" />
     <None Include="..\..\Build\Assets\Shaders\reflection.vert" />
     <None Include="..\..\Build\Assets\Shaders\refraction.prog" />

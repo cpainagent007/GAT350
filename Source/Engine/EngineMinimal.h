@@ -61,6 +61,7 @@
 #include "Components/ModelRenderer.h"
 #include "Components/FirstPersonController.h"
 #include "Components/RotationComponent.h"
+#include "Components/PostProcessComponent.h"
 
 // gui
 #include "GUI/GUI.h"

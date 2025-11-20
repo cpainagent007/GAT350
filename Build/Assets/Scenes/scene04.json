@@ -71,6 +71,23 @@
       ]
     },
     {
+      "name": "PostProcess",
+      "persistent": true,
+      "active": false,
+      "transform": {
+        "position": [ 0, 0, 0 ],
+        "rotation": [ 0, 0, 0 ],
+        "scale": [ 5, 5, 5 ]
+      },
+      "components": [
+        {
+          "type": "ModelRenderer",
+          "model": "Models/quad.obj",
+          "material": "Materials/postprocess.mat"
+        }
+      ]
+    },
+    {
       "name": "camera_rtt",
       "persistent": true,
       "transform": {
@@ -95,7 +112,11 @@
       },
       "components": [
         {
-          "type": "CameraComponent"
+          "type": "CameraComponent",
+          "outputTexture": "postprocessTexture"
+        },
+        {
+          "type": "PostProcessComponent"
         },
         {
           "type": "FirstPersonController",
