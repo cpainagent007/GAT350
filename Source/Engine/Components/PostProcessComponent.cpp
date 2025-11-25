@@ -46,6 +46,10 @@ namespace neu {
 		if (ImGui::Checkbox("Invert Colors", &check))
 			check ? bitSelect |= (uint32_t)Parameters::Invert : bitSelect &= ~(uint32_t)Parameters::Invert;
 
+		check = bitSelect & (uint32_t)Parameters::Vignette;
+		if (ImGui::Checkbox("Vignette", &check))
+			check ? bitSelect |= (uint32_t)Parameters::Vignette : bitSelect &= ~(uint32_t)Parameters::Vignette;
+
 		parameters = (Parameters)bitSelect;
 
 		ImGui::ColorEdit3("Color Tint", glm::value_ptr(colorTint));

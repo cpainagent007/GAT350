@@ -9,7 +9,8 @@ namespace neu {
 			ColorTint	= (1 << 1),
 			Scanline	= (1 << 2),
 			Grain		= (1 << 3),
-			Invert		= (1 << 4)
+			Invert		= (1 << 4),
+			Vignette	= (1 << 5)
 		};
 
 

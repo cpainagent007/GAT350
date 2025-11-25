@@ -5,6 +5,7 @@
 #define SCANLINE   (1 << 2)
 #define GRAIN      (1 << 3)
 #define INVERT     (1 << 4)
+#define VIGNETTE   (1 << 5)
 
 in vec2 v_texcoord;
 out vec4 f_color;
@@ -59,6 +60,14 @@ void main()
     if ((u_parameters & INVERT) != 0u)
     {
         postprocess.rgb = vec3(1.0) - postprocess.rgb;
+    }
+
+    //Vignette
+    if ((u_parameters & VIGNETTE) != 0u) {
+        vec2 position = v_texcoord - vec2(0.5);
+        float len = length(position);
+        float vignette = smoothstep(0.8, 0.5, len);
+        postprocess.rgb *= vignette;
     }
 
     f_color = mix(color, postprocess, u_blend);

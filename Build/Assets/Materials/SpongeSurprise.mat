@@ -1,8 +1,9 @@
 {
-	"program" : "Shaders/basic_lit.prog",
+	"program": "Shaders/basic_phong_shadow.prog",
 	"baseMap": "Textures/SpongeSurprise.png",
-	"baseColor":  [1, 1, 1],
-	"shininess" : 64,
-	"tiling" : [ 1, 1 ],
-	"offset" : [ 0, 0 ]
+	"shadowMap": "shadowTexture",
+	"baseColor": [ 1, 1, 1 ],
+	"shininess": 64,
+	"tiling": [ 1, 1 ],
+	"offset": [ 0, 0 ]
 }

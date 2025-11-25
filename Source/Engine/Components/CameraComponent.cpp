@@ -6,7 +6,7 @@ namespace neu {
 
 	void CameraComponent::Update(float dt) {
 		view = (shadowCamera)
-			? glm::lookAt(owner->transform.position, owner->transform.position - owner->transform.Forward(), owner->transform.Up())
+			? glm::lookAt(owner->transform.position, owner->transform.position + owner->transform.Forward(), owner->transform.Up())
 			: glm::lookAt(owner->transform.position, owner->transform.position + owner->transform.Forward(), owner->transform.Up());
 		projection = (projectionType == ProjectionType::Perspective)
 			? glm::perspective(glm::radians(fov), aspect, near, far)
