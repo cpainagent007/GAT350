@@ -125,15 +125,19 @@ namespace neu {
             }
 
             if (renderToTexture && postprocessComponent) {
-                //camera->Clear();
 
                 auto postProcessProgram = Resources().Get<Program>("Shaders/postprocess.prog");
                 postProcessProgram->Use();
                 postprocessComponent->Apply(*postProcessProgram);
+                postProcessProgram->SetUniform("u_baseMap", 0);
+                glActiveTexture(GL_TEXTURE0);
                 camera->outputTexture->Bind();
+                glDisable(GL_DEPTH_TEST);
                 auto actor = GetActorByName("PostProcess");
                 actor->Draw(renderer);
+                glEnable(GL_DEPTH_TEST);
             }
+
         }
     }
 
